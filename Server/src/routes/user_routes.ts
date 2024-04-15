@@ -8,7 +8,7 @@ import { Loginuser } from "../controllers/Loginuser";
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
-router.post(`/${API_VERSION}/register`, Ceateuser);
-router.post(`/${API_VERSION}/login`, Loginuser);
+router.post(`/${API_VERSION}/signup`, Ceateuser);
+router.post(`/${API_VERSION}/signin`, Loginuser);
 
 export default router;
