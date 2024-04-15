@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import { User } from "../models/user_schema";
 // crypt password
 const bcrypt = require("bcrypt");
+// jwt
+import jwt from "jsonwebtoken";
 const Loginuser = async (req: Request, res: Response, next: NextFunction) => {
   const user = new User(req.body);
   //   Check if fields are empty
@@ -26,7 +28,14 @@ const Loginuser = async (req: Request, res: Response, next: NextFunction) => {
         .status(400)
         .send({ message: "Invalid credentials. Please try again." });
     }
-    res.send({ message: "Login successful", userExists });
+    // generate token
+    let token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET as string, {
+      expiresIn: "1h",
+    });
+    // set cookie
+    res.cookie("token", token);
+    // final response
+    res.status(200).send({ message: "Login successful", userExists });
   } catch (error) {
     console.log(error);
   }
