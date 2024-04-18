@@ -26,6 +26,7 @@ const Ceateuser = async (req: Request, res: Response, next: NextFunction) => {
     res.send({ message: "User created successfully", user });
   } catch (error) {
     console.log(error);
+    res.status(500).send({ message: error });
   }
 };
 

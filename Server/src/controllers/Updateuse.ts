@@ -5,27 +5,23 @@ import { User } from "../models/user_schema";
 import bcrypt from "bcrypt";
 const saltRounds = 10;
 const Updateuser = async (req: Request, res: Response, next: NextFunction) => {
-  const user = new User(req.body);
-  if (!user.name) {
-    return res.status(400).send({ message: "Please enter Username" });
-  } else if (!user.email) {
-    return res.status(400).send({ message: "Please enter Email" });
-  } else if (!user.password) {
-    return res.status(400).send({ message: "Please enter Password" });
-  }
-  user.password = await bcrypt.hash(user.password, saltRounds);
+  // Check user _id in database
   try {
-    const userExists = await User.findOne({ email: user.email });
-    if (userExists) {
-      await userExists.updateOne({ $set: user });
-      res.send({ message: "User updated successfully", user });
-    } else {
-      return res
-        .status(400)
-        .send({ message: "User with this email does not exist" });
-    }
+    let input = req.body;
+    let _id: string = req.cookies.Authorization;
+    console.log(_id);
+
+    // Hash passowrd
+    input.password = await bcrypt.hash(input.password, saltRounds);
+    // Update user
+    const userupdate = await User.findByIdAndUpdate({ _id }, input, {
+      new: true,
+    });
+    console.log(userupdate);
+    await userupdate?.save();
+    res.status(200).json({ message: "User updated successfully", userupdate });
   } catch (error) {
-    console.log(error);
+    res.status(500).send({ massega: error });
   }
 };
 export { Updateuser };
