@@ -4,6 +4,7 @@ import { User } from "../models/user_schema";
 const bcrypt = require("bcrypt");
 // jwt
 import jwt from "jsonwebtoken";
+
 const Loginuser = async (req: Request, res: Response, next: NextFunction) => {
   const user = new User(req.body);
   //   Check if fields are empty
@@ -32,12 +33,19 @@ const Loginuser = async (req: Request, res: Response, next: NextFunction) => {
     let token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET as string, {
       expiresIn: "1h",
     });
+    // Get id and Split id
+    const userid: any = userExists._id;
+    const firstsplit = String(userid).split(" ");
+    const fianl_id: string = firstsplit[0];
+    // set _id user
+    res.cookie("Authorization", fianl_id);
     // set cookie
     res.cookie("token", token);
     // final response
     res.status(200).send({ message: "Login successful", userExists });
   } catch (error) {
     console.log(error);
+    res.status(500).send({ message: error });
   }
 };
 

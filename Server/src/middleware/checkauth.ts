@@ -2,18 +2,19 @@ import { Request, Response, NextFunction } from "express";
 
 import jwt from "jsonwebtoken";
 
+import { User } from "../models/user_schema";
+
 const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.token;
-  try {
-    if (token) {
-      const decode = jwt.verify(token, process.env.JWT_SECRET as string);
-      console.log(decode);
-    } else {
-      return res.status(400).send({ message: "Not Authorized" });
-    }
+  const Authorization = req.cookies.Authorization;
+  // console.log(token);
+  if (!token) {
+    res.status(401).json({ message: "Unauthorized" });
+  } else {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+    console.log(decoded);
+    req.body.user = decoded;
     next();
-  } catch (error) {
-    console.log(error);
   }
 };
 export { checkAuth };
