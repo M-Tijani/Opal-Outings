@@ -8,6 +8,7 @@ export default function Layout() {
     <>
       <main>
         <Header />
+
         <div>
           <Outlet />
         </div>

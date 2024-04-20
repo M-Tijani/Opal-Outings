@@ -7,6 +7,12 @@
     @apply py-3 px-3 bg-tertiary hover:bg-tertiaryS duration-200 ease-in-out rounded-lg;
   }
   .active {
-    @apply relative underline;
+    @apply font-bold text-tertiary;
+  }
+  .Active-btn {
+    @apply font-bold text-lg bg-tertiary hover:bg-tertiaryS duration-200 rounded-lg shadow-lg py-3 px-10;
+  }
+  .Unactive-btn {
+    @apply font-bold text-lg duration-200 rounded-lg shadow-lg py-2 px-10 border-none ring-4 ring-tertiary hover:ring-tertiaryS;
   }
 }
