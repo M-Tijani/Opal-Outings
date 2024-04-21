@@ -7,8 +7,9 @@ export default function Layout() {
   return (
     <>
       <main>
-        <Header />
-
+        <section className="fixed w-full z-10">
+          <Header />
+        </section>
         <div>
           <Outlet />
         </div>

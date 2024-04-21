@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Blog from "./pages/Blog";
 import Mail from "./pages/Mail";
 import About from "./pages/About";
+import Dashboard from "./pages/Dashboard";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/mail" element={<Mail />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/about" element={<About />} />
           </Route>
         </Routes>

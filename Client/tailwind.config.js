@@ -9,6 +9,13 @@ export default {
         tertiary: "#FAA916",
         quaternary: "#F7F5FB",
         tertiaryS: "#f48c0c",
+        inputColor: "#EBEBEB",
+      },
+      backgroundImage: {
+        "hero-pattern": "url('./src/assets/Hero_Background.jpg')",
+      },
+      fontFamily: {
+        Inter: ["Inter", "sans-serif"],
       },
     },
   },

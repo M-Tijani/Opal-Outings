@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-VariableFont_slnt,wght.ttf");
+}
+
 @layer components {
   .User-btn {
     @apply py-3 px-3 bg-tertiary hover:bg-tertiaryS duration-200 ease-in-out rounded-lg;
@@ -9,10 +14,29 @@
   .active {
     @apply font-bold text-tertiary;
   }
+  .activeS {
+    @apply font-bold text-white bg-tertiary hover:bg-tertiaryS duration-200 w-full max-w-[250px] py-2 rounded-lg;
+  }
   .Active-btn {
     @apply font-bold text-lg bg-tertiary hover:bg-tertiaryS duration-200 rounded-lg shadow-lg py-3 px-10;
   }
   .Unactive-btn {
     @apply font-bold text-lg duration-200 rounded-lg shadow-lg py-2 px-10 border-none ring-4 ring-tertiary hover:ring-tertiaryS;
+  }
+  .input-Search {
+    @apply py-3 pl-[50px] pr-[130px] w-full outline-none rounded-lg bg-quaternary;
+  }
+  .input-btn {
+    @apply w-full max-w-[200px] py-2 px-10 bg-tertiary hover:bg-tertiaryS duration-200 text-white rounded-md cursor-pointer font-semibold;
+  }
+  .sign-input {
+    @apply w-full h-[40px] rounded-lg outline-none bg-inputColor max-w-[350px] px-5 border-none ring-1 focus:ring-2 ring-primary duration-200;
+  }
+  .sign-btn {
+    @apply w-full bg-primary hover:bg-secondary font-semibold text-white duration-200 max-w-[350px] py-2 rounded-lg;
+  }
+  /* Dashboard Page */
+  .Boxholder {
+    @apply;
   }
 }

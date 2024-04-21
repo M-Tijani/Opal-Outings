@@ -4,7 +4,7 @@ import { User } from "../models/user_schema";
 // Crypt password
 import bcrypt from "bcrypt";
 const saltRounds = 10;
-const Ceateuser = async (req: Request, res: Response, next: NextFunction) => {
+const CreateUser = async (req: Request, res: Response, next: NextFunction) => {
   const user = new User(req.body);
   //   Check if fields are empty
   if (!user.name) {
@@ -22,12 +22,12 @@ const Ceateuser = async (req: Request, res: Response, next: NextFunction) => {
       .send({ message: "User with this email already exists" });
   }
   try {
-    await user.save();
     res.send({ message: "User created successfully", user });
+    await user.save();
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: error });
   }
 };
 
-export { Ceateuser };
+export { CreateUser };
