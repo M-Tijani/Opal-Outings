@@ -36,7 +36,4 @@
     @apply w-full bg-primary hover:bg-secondary font-semibold text-white duration-200 max-w-[350px] py-2 rounded-lg;
   }
   /* Dashboard Page */
-  .Boxholder {
-    @apply bg-primary w-full h-full flex items-center justify-center max-w-[500px] rounded-lg flex-col gap-4 py-4;
-  }
 }
