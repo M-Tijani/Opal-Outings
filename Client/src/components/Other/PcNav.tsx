@@ -79,12 +79,16 @@ export default function PcNav() {
                   <>
                     <section className="absolute top-[70px] -right-[70px]">
                       <div className="flex bg-primary shadow-lg w-[200px] h-[150px] flex-col gap-8 rounded-lg items-center justify-center">
-                        <Link to={"/signup"}>
-                          <span className="Active-btn">Dashboard</span>
+                        <Link to={"/profile"}>
+                          <span className="Active-btn">Profile</span>
                         </Link>
-                        <Link onClick={handlelogout} to={"/signin"}>
-                          <span className="Unactive-btn">Sign out</span>
-                        </Link>
+
+                        <span
+                          onClick={handlelogout}
+                          className="Unactive-btn cursor-pointer"
+                        >
+                          Sign out
+                        </span>
                       </div>
                     </section>
                   </>

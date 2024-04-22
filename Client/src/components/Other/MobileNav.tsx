@@ -51,7 +51,7 @@ export default function MobileNav() {
   };
   const handleredirect = () => {
     if (isUserLoggedIn) {
-      window.location.href = "/Dashboard";
+      window.location.href = "/profile";
     } else {
       window.location.href = "/Signin";
     }
@@ -90,7 +90,7 @@ export default function MobileNav() {
                   {isUserLoggedIn ? (
                     <section className="w-full flex flex-col items-center justify-center gap-4">
                       <button className="input-btn" onClick={handleredirect}>
-                        Dashboard
+                        Profile
                       </button>
                       <button className="input-btn" onClick={handlelogout}>
                         Sign out

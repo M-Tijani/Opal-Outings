@@ -19,7 +19,7 @@ export default function Signin() {
         { withCredentials: true }
       );
       // redirect to dashboard page
-      window.location.href = "/Dashboard";
+      window.location.href = "/";
     } catch (error) {
       console.log(error);
     }

@@ -7,6 +7,7 @@ import { CreateUser } from "../controllers/Createuser";
 import { Loginuser } from "../controllers/Loginuser";
 import { Updateuser } from "../controllers/Updateuse";
 import { Deleteuser } from "../controllers/Deleteuser";
+import { Getuserinfo } from "../controllers/Getuserinfo";
 // AUTHRIZATION
 import { checkAuth } from "../middleware/checkauth";
 
@@ -16,4 +17,5 @@ router.post(`/${API_VERSION}/signup`, CreateUser);
 router.post(`/${API_VERSION}/signin`, Loginuser);
 router.patch(`/${API_VERSION}/updateuser`, Updateuser);
 router.delete(`/${API_VERSION}/deleteuser`, checkAuth, Deleteuser);
+router.post(`/${API_VERSION}/profile`, Getuserinfo);
 export default router;

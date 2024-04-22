@@ -25,7 +25,6 @@ const CreateUser = async (req: Request, res: Response, next: NextFunction) => {
     res.send({ message: "User created successfully", user });
     await user.save();
   } catch (error) {
-    console.log(error);
     res.status(500).send({ message: error });
   }
 };

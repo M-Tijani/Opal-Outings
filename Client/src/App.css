@@ -37,6 +37,6 @@
   }
   /* Dashboard Page */
   .Boxholder {
-    @apply;
+    @apply bg-primary w-full h-full flex items-center justify-center max-w-[500px] rounded-lg flex-col gap-4 py-4;
   }
 }
