@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 // Radix UI
 import { Flex, Text, Button, Dialog, TextField } from "@radix-ui/themes";
-
+// Props
+import Profileinput from "../components/Props/Profileinput";
 export default function Dashboard() {
   // Default User Data
   const [userName, setUserName] = useState<string>("");
@@ -50,6 +51,7 @@ export default function Dashboard() {
       console.log(error);
     }
   };
+
   // Update User Data and Delete User
   const handleupdateuser = async (e: any) => {
     e.preventDefault();
@@ -73,6 +75,7 @@ export default function Dashboard() {
       console.log(error);
     }
   };
+
   const handledeleteuser = async (e: any) => {
     e.preventDefault();
     try {
@@ -85,52 +88,36 @@ export default function Dashboard() {
           },
         }
       );
+      handlelogout();
       // redirect to signin page
       window.location.href = "/Signin";
     } catch (error) {
       console.log(error);
     }
   };
+
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
+  const handlelogout = () => {
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+    setIsUserLoggedIn(false);
+    window.location.href = "/";
+  };
   return (
     <>
       <section className="w-full h-full flex items-center justify-center pt-[90px]">
-        <section className="bg-primary w-full max-w-[300px] h-full flex flex-col items-center justify-center rounded-md gap-5 py-10">
+        <section className="bg-primary w-full max-w-[320px] md:max-w-[470px] rounded-md py-4 h-full flex flex-col items-center justify-center gap-3">
           <div>
             <h1 className="text-xl font-semibold text-white">Profile</h1>
           </div>
-          <section className="flex flex-col items-start w-full">
-            <div className="flex justify-between items-center w-full max-w-[250px] mx-auto">
-              <h1 className="text-base font-medium text-white">Username</h1>
-              <input
-                className="placeholder:text-white w-full max-w-[150px] rounded-md outline-none py-1 px-2"
-                type="text"
-                placeholder={userName}
-                disabled
-              />
-            </div>
-          </section>
-          <section className="flex flex-col items-start w-full">
-            <div className="flex justify-between items-center w-full max-w-[250px] mx-auto">
-              <h1 className="text-base font-medium text-white">Email</h1>
-              <input
-                className="placeholder:text-white w-full max-w-[150px] rounded-md outline-none py-1 px-2"
-                type="text"
-                placeholder={userEmail}
-                disabled
-              />
-            </div>
-          </section>
-          <section className="flex flex-col items-start w-full">
-            <div className="flex justify-between items-center w-full max-w-[250px] mx-auto">
-              <h1 className="text-base font-medium text-white">Password</h1>
-              <input
-                className="placeholder:text-white w-full max-w-[150px] rounded-md outline-none py-1 px-2"
-                type="text"
-                placeholder={userPassword}
-                disabled
-              />
-            </div>
-          </section>
+
+          <Profileinput placeholder={userName} titte="Name" />
+          <Profileinput placeholder={userEmail} titte="Email" />
+          <Profileinput placeholder={userPassword} titte="Password" />
+
           {/* Edit Profile / Email & Name */}
           <section className="w-full flex justify-start pl-5">
             <form action="">

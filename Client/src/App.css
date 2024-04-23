@@ -35,5 +35,8 @@
   .sign-btn {
     @apply w-full bg-primary hover:bg-secondary font-semibold text-white duration-200 max-w-[350px] py-2 rounded-lg;
   }
-  /* Dashboard Page */
+  /* Profile Page */
+  .input_desble {
+    @apply placeholder:text-white w-full max-w-[150px] md:max-w-[300px] text-center rounded-md outline-none py-1 px-2;
+  }
 }
