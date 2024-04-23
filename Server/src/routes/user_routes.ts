@@ -15,7 +15,7 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 router.post(`/${API_VERSION}/signup`, CreateUser);
 router.post(`/${API_VERSION}/signin`, Loginuser);
-router.patch(`/${API_VERSION}/updateuser`, Updateuser);
+router.patch(`/${API_VERSION}/updateuser`, checkAuth, Updateuser);
 router.delete(`/${API_VERSION}/deleteuser`, checkAuth, Deleteuser);
 router.post(`/${API_VERSION}/profile`, Getuserinfo);
 export default router;

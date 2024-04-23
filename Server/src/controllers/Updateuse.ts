@@ -6,21 +6,17 @@ import bcrypt from "bcrypt";
 const saltRounds = 10;
 const Updateuser = async (req: Request, res: Response, next: NextFunction) => {
   // Check user _id in database
+  const input = req.body;
+  const _id = req.headers.authorization;
+  // const _id = req.cookies.Authorization;
   try {
-    let input = req.body;
-    let _id: string = req.cookies.Authorization;
-    console.log(_id);
-
-    // Hash passowrd
-    input.password = await bcrypt.hash(input.password, saltRounds);
-    // Update user
+    // input.password = await bcrypt.hash(input.password, saltRounds);
     const userupdate = await User.findByIdAndUpdate({ _id }, input, {
       new: true,
     });
-    console.log(userupdate);
-    await userupdate?.save();
     res.status(200).json({ message: "User updated successfully", userupdate });
   } catch (error) {
+    console.log(error);
     res.status(500).send({ massega: error });
   }
 };
