@@ -1,29 +1,34 @@
 // Images
-import Logo from "../../assets/main-logo.png";
+import Logo from "../../assets/OO_Main_T.png";
 // routes
 import { NavLink, Link } from "react-router-dom";
 // Icons
 import { Menu } from "lucide-react";
 import { X } from "lucide-react";
+import { UserRound } from "lucide-react";
 // Outside Hooks
 import OutsideClickHandler from "react-outside-click-handler";
 // States
 import { useState, useEffect } from "react";
 export default function MobileNav() {
   const [showingMenu, setShowingMenu] = useState<boolean>(false);
+  const [showingProfile, setShowingProfile] = useState<boolean>(false);
   const handleshowingmenu = () => {
     setShowingMenu((prev) => !prev);
   };
+  const handleshowingprofile = () => {
+    setShowingProfile((prev) => !prev);
+  };
   // Arry of menu names
   const menuNames = [
-    { name: "HOME", link: "/" },
-    { name: "ABOUT US", link: "/about" },
-    { name: "MAIL US", link: "/mail" },
-    { name: "BLOG", link: "/blog" },
+    { name: "Home", link: "/" },
+    { name: "About us", link: "/about" },
+    { name: "Mail us", link: "/mail" },
+    { name: "Blog", link: "/blog" },
   ];
   const signinup = [
-    { name: "SIGN IN", link: "/signin" },
-    { name: "SIGN UP", link: "/signup" },
+    { name: "Sign in", link: "/signin" },
+    { name: "Sign up", link: "/signup" },
   ];
   // Check if user is logged in
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
@@ -58,69 +63,86 @@ export default function MobileNav() {
   };
   return (
     <>
-      <section className="bg-primary flex items-center justify-between w-full py-2 px-4 text-white z-20 shadow-lg">
+      <section></section>
+      <section className="relative bg-primary flex items-center justify-between w-full h-full my-2 mx-2 py-2 px-4 rounded-md">
         <Link to={"/"}>
-          <img className="w-[200px]" src={Logo} alt="" />
+          <img className="w-[180px]" src={Logo} alt="" />
         </Link>
-        <OutsideClickHandler
-          onOutsideClick={() => {
-            setShowingMenu(false);
-          }}
-        >
-          <div onClick={handleshowingmenu}>
-            <Menu size={30} />
-          </div>
-          {showingMenu && (
-            <>
-              <section className="absolute top-[60px] right-0 w-full max-w-[300px] h-screen bg-primary z-10">
-                <div className="my-[80px] flex flex-col items-center justify-center gap-4 text-center">
-                  {menuNames.map((item, index) => (
-                    <NavLink
-                      to={`${item.link}`}
-                      key={index}
-                      className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "activeS" : ""
-                      }
-                    >
-                      {item.name}
-                    </NavLink>
-                  ))}
-                </div>
-                <section className="flex flex-col items-center justify-center gap-4 ">
-                  {isUserLoggedIn ? (
-                    <section className="w-full flex flex-col items-center justify-center gap-4">
-                      <button className="input-btn" onClick={handleredirect}>
-                        Profile
-                      </button>
-                      <button className="input-btn" onClick={handlelogout}>
-                        Sign out
-                      </button>
-                    </section>
-                  ) : (
-                    <div className="flex flex-col items-center justify-center gap-4 ">
-                      {signinup.map((item, index) => (
-                        <Link
-                          className="input-btn"
-                          to={`${item.link}`}
-                          key={index}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
+        <section className="flex items-center justify-center gap-4">
+          <OutsideClickHandler onOutsideClick={() => setShowingProfile(false)}>
+            <div onClick={handleshowingprofile}>
+              <UserRound size={30} />
+            </div>
+            {showingProfile && (
+              <>
+                <section>
+                  {showingProfile && (
+                    <div className="Boxholderformenu">
+                      <div className="BoxholderformenuChild">
+                        {signinup.map((item, index) => (
+                          <NavLink
+                            to={`${item.link}`}
+                            key={index}
+                            className={({ isActive, isPending }) =>
+                              isPending
+                                ? "pending"
+                                : isActive
+                                ? "activeMobile"
+                                : ""
+                            }
+                          >
+                            {item.name}
+                          </NavLink>
+                        ))}
+                      </div>
+                      <div className="absolute top-7 left-7">
+                        <X size={30} onClick={handleshowingprofile} />
+                      </div>
                     </div>
                   )}
                 </section>
+              </>
+            )}
+          </OutsideClickHandler>
+          <OutsideClickHandler
+            onOutsideClick={() => {
+              setShowingMenu(false);
+            }}
+          >
+            <div onClick={handleshowingmenu}>
+              <Menu size={30} />
+            </div>
+            {showingMenu && (
+              <>
+                <section className="">
+                  <div className="Boxholderformenu">
+                    <div className="BoxholderformenuChild">
+                      {menuNames.map((item, index) => (
+                        <NavLink
+                          to={`${item.link}`}
+                          key={index}
+                          className={({ isActive, isPending }) =>
+                            isPending
+                              ? "pending"
+                              : isActive
+                              ? "activeMobile"
+                              : ""
+                          }
+                        >
+                          {item.name}
+                        </NavLink>
+                      ))}
+                    </div>
 
-                <div
-                  onClick={() => setShowingMenu(false)}
-                  className="absolute top-[20px] left-[30px] border-none ring-[4px] ring-tertiary rounded-lg py-1 px-1"
-                >
-                  <X size={30} />
-                </div>
-              </section>
-            </>
-          )}
-        </OutsideClickHandler>
+                    <div className="absolute top-7 left-7">
+                      <X size={30} onClick={handleshowingmenu} />
+                    </div>
+                  </div>
+                </section>
+              </>
+            )}
+          </OutsideClickHandler>
+        </section>
       </section>
     </>
   );

@@ -45,7 +45,8 @@ export default function PcNav() {
   };
   return (
     <>
-      <section className="bg-primary w-full flex items-center justify-between py-2 px-[150px] text-white">
+      <section className="bg-primary flex items-center justify-between w-full h-full my-2 mx-2 py-2 px-4 rounded-m"></section>
+      {/* <section className="bg-primary w-full flex items-center justify-between py-2 px-[150px] text-white">
         <div>
           <NavLink to={"/"}>
             <img className="w-[40px]" src={Logo_1} alt="logo" />
@@ -114,7 +115,7 @@ export default function PcNav() {
             )}
           </OutsideClickHandler>
         </section>
-      </section>
+      </section> */}
     </>
   );
 }
