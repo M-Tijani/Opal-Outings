@@ -1,5 +1,5 @@
 // Images
-import Logo_1 from "../../assets/OPAL OUTINGS.png";
+import Logo_1 from "../../assets/OO_Main.png";
 import { NavLink, Link } from "react-router-dom";
 // ICONS
 import { User } from "lucide-react";
@@ -45,7 +45,31 @@ export default function PcNav() {
   };
   return (
     <>
-      <section className="bg-primary flex items-center justify-between w-full h-full my-2 mx-2 py-2 px-4 rounded-m"></section>
+      <section className="bg-primary w-full h-full my-2 mx-2 py-2 px-4 rounded-m">
+        <section className="w-full flex items-center justify-between">
+          <span>
+            <img className="w-[40px]" src={Logo_1} alt="" />
+          </span>
+          <div className="w-full flex justify-end items-center gap-6">
+            <section className="flex items-center justify-center gap-4 font-medium">
+              {menuNames.map((item, index) => (
+                <NavLink
+                  to={`${item.link}`}
+                  key={index}
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
+                >
+                  {item.name}
+                </NavLink>
+              ))}
+            </section>
+            <span>
+              <button>Sign in</button>
+            </span>
+          </div>
+        </section>
+      </section>
       {/* <section className="bg-primary w-full flex items-center justify-between py-2 px-[150px] text-white">
         <div>
           <NavLink to={"/"}>

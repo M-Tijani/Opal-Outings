@@ -10,6 +10,8 @@ import { UserRound } from "lucide-react";
 import OutsideClickHandler from "react-outside-click-handler";
 // States
 import { useState, useEffect } from "react";
+// animation
+import { motion, AnimatePresence } from "framer-motion";
 export default function MobileNav() {
   const [showingMenu, setShowingMenu] = useState<boolean>(false);
   const [showingProfile, setShowingProfile] = useState<boolean>(false);
@@ -61,25 +63,78 @@ export default function MobileNav() {
       window.location.href = "/Signin";
     }
   };
+
   return (
     <>
-      <section></section>
       <section className="relative bg-primary flex items-center justify-between w-full h-full my-2 mx-2 py-2 px-4 rounded-md">
         <Link to={"/"}>
           <img className="w-[180px]" src={Logo} alt="" />
         </Link>
         <section className="flex items-center justify-center gap-4">
           <OutsideClickHandler onOutsideClick={() => setShowingProfile(false)}>
-            <div onClick={handleshowingprofile}>
+            <div id="profileanimation" onClick={handleshowingprofile}>
               <UserRound size={30} />
             </div>
-            {showingProfile && (
-              <>
-                <section>
-                  {showingProfile && (
-                    <div className="Boxholderformenu">
+            <AnimatePresence>
+              {showingProfile && (
+                <>
+                  <section>
+                    {showingProfile && (
+                      <motion.div
+                        initial={{ x: 200 }}
+                        transition={{ ease: "easeInOut", duration: 0.2 }}
+                        animate={{ x: 0 }}
+                        exit={{ x: 200 }}
+                        className="Boxholderformenu"
+                      >
+                        <div className="BoxholderformenuChild">
+                          {signinup.map((item, index) => (
+                            <NavLink
+                              to={`${item.link}`}
+                              key={index}
+                              className={({ isActive, isPending }) =>
+                                isPending
+                                  ? "pending"
+                                  : isActive
+                                  ? "activeMobile"
+                                  : ""
+                              }
+                            >
+                              {item.name}
+                            </NavLink>
+                          ))}
+                        </div>
+                        <div className="absolute top-7 left-7">
+                          <X size={30} onClick={handleshowingprofile} />
+                        </div>
+                      </motion.div>
+                    )}
+                  </section>
+                </>
+              )}
+            </AnimatePresence>
+          </OutsideClickHandler>
+          <OutsideClickHandler
+            onOutsideClick={() => {
+              setShowingMenu(false);
+            }}
+          >
+            <div onClick={handleshowingmenu}>
+              <Menu size={30} />
+            </div>
+            <AnimatePresence>
+              {showingMenu && (
+                <>
+                  <section className="">
+                    <motion.div
+                      initial={{ x: 200 }}
+                      transition={{ ease: "easeInOut", duration: 0.2 }}
+                      animate={{ x: 0 }}
+                      exit={{ x: 200 }}
+                      className="Boxholderformenu"
+                    >
                       <div className="BoxholderformenuChild">
-                        {signinup.map((item, index) => (
+                        {menuNames.map((item, index) => (
                           <NavLink
                             to={`${item.link}`}
                             key={index}
@@ -95,52 +150,15 @@ export default function MobileNav() {
                           </NavLink>
                         ))}
                       </div>
-                      <div className="absolute top-7 left-7">
-                        <X size={30} onClick={handleshowingprofile} />
-                      </div>
-                    </div>
-                  )}
-                </section>
-              </>
-            )}
-          </OutsideClickHandler>
-          <OutsideClickHandler
-            onOutsideClick={() => {
-              setShowingMenu(false);
-            }}
-          >
-            <div onClick={handleshowingmenu}>
-              <Menu size={30} />
-            </div>
-            {showingMenu && (
-              <>
-                <section className="">
-                  <div className="Boxholderformenu">
-                    <div className="BoxholderformenuChild">
-                      {menuNames.map((item, index) => (
-                        <NavLink
-                          to={`${item.link}`}
-                          key={index}
-                          className={({ isActive, isPending }) =>
-                            isPending
-                              ? "pending"
-                              : isActive
-                              ? "activeMobile"
-                              : ""
-                          }
-                        >
-                          {item.name}
-                        </NavLink>
-                      ))}
-                    </div>
 
-                    <div className="absolute top-7 left-7">
-                      <X size={30} onClick={handleshowingmenu} />
-                    </div>
-                  </div>
-                </section>
-              </>
-            )}
+                      <div className="absolute top-7 left-7">
+                        <X size={30} onClick={handleshowingmenu} />
+                      </div>
+                    </motion.div>
+                  </section>
+                </>
+              )}
+            </AnimatePresence>
           </OutsideClickHandler>
         </section>
       </section>

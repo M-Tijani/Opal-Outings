@@ -8,14 +8,15 @@
 }
 
 @layer components {
-  /* Header - Mobile */
+  /* Header - Small Screen */
   .activeMobile {
     @apply bg-secondary w-full max-w-[270px] py-2 rounded-md font-semibold text-white duration-200 ease-in-out;
   }
   .Boxholderformenu {
-    @apply absolute top-[80px] right-0 w-full max-w-[300px] h-[500px] bg-primary z-10 flex flex-col items-center justify-center gap-2 rounded-md;
+    @apply absolute duration-200 top-[80px] right-0 w-full max-w-[300px] h-[500px] bg-primary z-10 flex flex-col items-center justify-center gap-2 rounded-md;
   }
   .BoxholderformenuChild {
     @apply w-full my-[80px] flex flex-col items-center justify-center gap-4 text-center;
   }
+  /* Header - Large Screen */
 }

@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 export default function Layout() {
   return (
     <>
-      <main>
+      <main className="font-Inter">
         <section className="fixed w-full z-10">
           <Header />
         </section>
