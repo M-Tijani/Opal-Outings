@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 // // States
 import { useState } from "react";
+import Signinput from "../components/Props/Signinput";
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,44 +36,31 @@ export default function Signup() {
           action=""
         >
           <h1 className="text-3xl font-semibold">SIGN UP</h1>
-          <div className="relative w-full max-w-[350px] mt-6">
-            <input
-              className="sign-input"
-              type="text"
-              placeholder="Example : Mahdi Tij....."
+          <div className="w-full max-w-[350px]">
+            <Signinput
+              title="Username"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              setvalue={setUsername}
+              type="text"
+              placeholder="Example : Mahdi Tija....."
             />
-            <label className="absolute bottom-11 left-6 font-semibold">
-              Username
-            </label>
-          </div>
-          <div className="relative w-full max-w-[350px] mt-6">
-            <input
-              className="sign-input"
-              type="email"
-              placeholder="Example : .....@example.com"
+            <Signinput
+              title="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              setvalue={setEmail}
+              type="Email"
+              placeholder="Example : ....@example.com"
             />
-            <label className="absolute bottom-11 left-6 font-semibold">
-              Email
-            </label>
-          </div>
-          <div className="relative w-full max-w-[350px] mt-6">
-            <input
-              className="sign-input"
+            <Signinput
+              title="Password"
+              value={password}
+              setvalue={setPassword}
               type="password"
               placeholder="Example : **********"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
             />
-            <label className="absolute bottom-11 left-6 font-semibold">
-              Password
-            </label>
           </div>
           <div className="w-full max-w-[350px] flex justify-between font-semibold ">
-            <Link className="hover:underline hover:text-primary" to="/signin">
+            <Link className="GLinks" to="/signin">
               Already have an account?
             </Link>
           </div>

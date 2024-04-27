@@ -8,6 +8,10 @@
 }
 
 @layer components {
+  /* Global Links */
+  .GLinks {
+    @apply hover:underline hover:text-btncolor duration-150 cursor-pointer;
+  }
   /* Header - Small Screen */
   .activeMobile {
     @apply bg-secondary w-full max-w-[270px] py-2 rounded-md font-semibold text-white duration-200 ease-in-out;
@@ -19,4 +23,20 @@
     @apply w-full my-[80px] flex flex-col items-center justify-center gap-4 text-center;
   }
   /* Header - Large Screen */
+  .active {
+    @apply text-secondary;
+  }
+  .profile_menu_padding {
+    @apply border-none ring-2 ring-btncolor w-full max-w-[220px] rounded-md mx-auto py-[6px];
+  }
+  .profile_menu_active {
+    @apply bg-btncolor w-full max-w-[220px] rounded-md mx-auto py-[6px];
+  }
+  .profile-main {
+    @apply w-10 h-10 flex bg-primary;
+  }
+  /* Sign Pages */
+  .sign-btn {
+    @apply bg-tertiary hover:bg-tertiaryHover duration-200 text-white w-full max-w-[350px] py-2 rounded-md;
+  }
 }
