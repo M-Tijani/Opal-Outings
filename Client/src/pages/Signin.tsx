@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 // // States
 import { useState } from "react";
+
+// Props
+import Signinput from "../components/Props/Signinput";
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,42 +36,28 @@ export default function Signin() {
           action=""
         >
           <h1 className="text-3xl font-semibold">SIGN IN</h1>
-          <div className="relative w-full max-w-[350px] mt-6">
-            <input
-              className="sign-input"
-              type="email"
-              placeholder="Example : .....@example.com"
+          <div className="w-full max-w-[350px]">
+            <Signinput
+              title="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              setvalue={setEmail}
+              type="Email"
+              placeholder="Example : ....@example.com"
             />
-            <label className="absolute bottom-11 left-6 font-semibold">
-              Email
-            </label>
-          </div>
-          <div className="relative w-full max-w-[350px] mt-6">
-            <input
-              className="sign-input"
+            <Signinput
+              title="Password"
+              value={password}
+              setvalue={setPassword}
               type="password"
               placeholder="Example : **********"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
             />
-            <label className="absolute bottom-11 left-6 font-semibold">
-              Password
-            </label>
           </div>
           <div className="w-full max-w-[350px] flex justify-between font-semibold ">
-            <label
-              className="hover:underline hover:text-primary"
-              htmlFor="forgot password!"
-            >
+            <label className="GLinks" htmlFor="forgot password!">
               Forget password?
             </label>
             <Link to="/signup">
-              <label
-                className="hover:underline hover:text-primary"
-                htmlFor="don't have an account?"
-              >
+              <label className="GLinks" htmlFor="don't have an account?">
                 Don't have an account?
               </label>
             </Link>

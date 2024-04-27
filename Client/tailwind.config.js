@@ -6,6 +6,12 @@ export default {
       colors: {
         primary: "#DFFBFC",
         secondary: "#EE6B4D",
+        tertiary: "#293241",
+        tertiaryHover: "#344258",
+        tertiaryInput: "#414F65",
+        sidecolor: "#6C9BC5",
+        btncolor: "#9BC0D9",
+        inputcolor: "#EFEFEF",
       },
       backgroundImage: {
         "hero-pattern": "url('./src/assets/Hero_Background.jpg')",

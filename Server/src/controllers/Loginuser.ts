@@ -27,7 +27,7 @@ const Loginuser = async (req: Request, res: Response, next: NextFunction) => {
     if (!passwordMatch) {
       return res
         .status(400)
-        .send({ message: "Invalid credentials. Please try again." });
+        .send({ message: "Wrong password. Please try again." });
     }
     // generate token
     let token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET as string, {
