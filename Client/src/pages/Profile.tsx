@@ -1,12 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 // Radix UI
-import { Flex, Text, Button, Dialog, TextField } from "@radix-ui/themes";
+// import { Flex, Text, Button, Dialog, TextField } from "@radix-ui/themes";
 // Props
 import Profileinput from "../components/Props/Profileinput";
+import Profilecustuminput from "../components/Props/Profilecustuminput";
 // Icons
 import { User } from "lucide-react";
 import { Mail } from "lucide-react";
+import { KeyRound } from "lucide-react";
+import { AlertDialog, Button, Flex } from "@radix-ui/themes";
+import { Link } from "react-router-dom";
 export default function Dashboard() {
   // Default User Data
   const [userName, setUserName] = useState<string>("");
@@ -59,7 +63,7 @@ export default function Dashboard() {
   // // Update Username
   const handleupdatename = async (e: any) => {
     e.preventDefault();
-    console.log(updateName);
+    // console.log(updateName);
     try {
       const response = await axios.patch(
         "http://localhost:3001/api/v1/updateuser",
@@ -73,7 +77,7 @@ export default function Dashboard() {
           },
         }
       );
-      console.log(response);
+      // console.log(response);
       // redirect to home page
       window.location.href = "/";
     } catch (error) {
@@ -96,7 +100,8 @@ export default function Dashboard() {
           },
         }
       );
-      console.log(response);
+      // console.log(response);
+
       // redirect to home page
       window.location.href = "/";
     } catch (error) {
@@ -106,6 +111,7 @@ export default function Dashboard() {
   // Passowrd Update
   const handleupdatepassword = async (e: any) => {
     e.preventDefault();
+    // console.log(updatePassword, updatePasswordAgain);
     try {
       const response = await axios.patch(
         "http://localhost:3001/api/v1/changepass",
@@ -120,9 +126,8 @@ export default function Dashboard() {
           },
         }
       );
+      // console.log(response);
       handlelogout();
-      // redirect to home page
-      window.location.href = "/";
     } catch (error) {
       console.log(error);
     }
@@ -161,11 +166,11 @@ export default function Dashboard() {
   return (
     <>
       <section className="w-full h-full flex items-center justify-center pt-[90px]">
-        <section className="bg-tertiary w-full max-w-[360px] md:max-w-[550px] rounded-md py-4 h-full flex flex-col items-center justify-center gap-3">
-          <h1 className="text-white">Account Info</h1>
-          <span className="w-full mx-auto max-w-[300px] h-[1px] bg-white"></span>
+        <section className="ring-1 ring-tertiary w-full max-w-[360px] md:max-w-[550px] rounded-md py-4 h-full flex flex-col items-center justify-center gap-5 duration-200">
+          <h1>Account Info</h1>
+          <span className="w-full mx-auto max-w-[300px] h-[1px] bg-tertiary"></span>
           <Profileinput
-            titleplace={"username "}
+            titleplace={"Username"}
             userplaceholder={userName}
             Icon={User}
             defaultValue={userName}
@@ -174,7 +179,7 @@ export default function Dashboard() {
             fucntion={handleupdatename}
           />
           <Profileinput
-            titleplace={"email"}
+            titleplace={"Email"}
             userplaceholder={userEmail}
             Icon={Mail}
             defaultValue={userEmail}
@@ -182,6 +187,50 @@ export default function Dashboard() {
             setvalue={setUpdateEmail}
             fucntion={handleupdateemail}
           />
+          <Profilecustuminput
+            titleplace={"Password"}
+            Icon={KeyRound}
+            defaultValue={userPassword}
+            setvalue={setUpdatePassword}
+            defaultValue1={userPassword}
+            setvalue1={setUpdatePasswordAgain}
+            fucntion={handleupdatepassword}
+            editngname="Password"
+            editngname1="Conform Password"
+          />
+          <section className="w-full flex items-center justify-between px-[30px]">
+            <AlertDialog.Root>
+              <AlertDialog.Trigger>
+                <Button color="red">Delete Account</Button>
+              </AlertDialog.Trigger>
+              <AlertDialog.Content maxWidth="450px">
+                <AlertDialog.Title>Delete Account</AlertDialog.Title>
+                <AlertDialog.Description size="2">
+                  Are you sure? Do you want to delete this account?
+                </AlertDialog.Description>
+
+                <Flex gap="3" mt="4" justify="end">
+                  <AlertDialog.Cancel>
+                    <Button variant="soft" color="gray">
+                      Cancel
+                    </Button>
+                  </AlertDialog.Cancel>
+                  <AlertDialog.Action>
+                    <Button
+                      onClick={handledeleteuser}
+                      variant="solid"
+                      color="red"
+                    >
+                      Delete Account
+                    </Button>
+                  </AlertDialog.Action>
+                </Flex>
+              </AlertDialog.Content>
+            </AlertDialog.Root>
+            <Link to="/">
+              <button>Go Back</button>
+            </Link>
+          </section>
         </section>
       </section>
     </>

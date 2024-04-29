@@ -29,7 +29,7 @@ export default function Signup() {
   };
   return (
     <>
-      <section className="pt-[100px]">
+      <section className="">
         <form
           onSubmit={(e) => handlesignup(e)}
           className="w-full h-full flex flex-col items-center justify-center gap-4"

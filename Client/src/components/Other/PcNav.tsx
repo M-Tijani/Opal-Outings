@@ -39,7 +39,7 @@ export default function PcNav() {
     } else {
       setIsUserLoggedIn(false);
     }
-    console.log(isUserLoggedIn);
+    // console.log(isUserLoggedIn);
   }, [isUserLoggedIn]);
   // Signout
   const handlelogout = () => {
@@ -93,7 +93,7 @@ export default function PcNav() {
   const support = [{ name: "Center Help", link: "/mail" }];
   return (
     <>
-      <section className="bg-primary w-full h-full max-w-[720px] mx-auto my-4  py-2 px-6 rounded-m">
+      <section className="w-full bg-primary shadow-md my-2 py-2 px-4 rounded-md mx-[10px] ">
         <section className="w-full flex items-center justify-between">
           <Link to={"/"}>
             <img className="w-[40px]" src={Logo_1} alt="" />
@@ -114,15 +114,106 @@ export default function PcNav() {
             </section>
             <OutsideClickHandler onOutsideClick={() => setShowingMenu(false)}>
               <span className="">
-                <img
-                  className="w-[50px] rounded-full border-none ring-1 hover:ring-2 ring-tertiary duration-200 ease-in-out"
-                  src={Profile}
+                <section
                   onClick={handleshowingmenu}
-                  alt=""
-                />
+                  className="bg-tertiary w-[50px] h-[50px] rounded-full flex items-center justify-center"
+                >
+                  <h1 className="text-white">{avatarImage}</h1>
+                </section>
               </span>
               {isUserLoggedIn ? (
                 <>
+                  {showingMenu && (
+                    <section
+                      onClick={handleshowingmenu}
+                      className="absolute top-0 left-0 w-full h-screen bg-black opacity-30"
+                    ></section>
+                  )}
+                  <AnimatePresence>
+                    {showingMenu && (
+                      <>
+                        <section>
+                          <motion.section
+                            initial={{ x: 300 }}
+                            animate={{ x: 0 }}
+                            exit={{ x: 300 }}
+                            className="absolute top-[100px] right-[20px] w-full max-w-[250px] h-[430px] flex flex-col rounded-md bg-white ring-1 ring-tertiary shadow-2xl"
+                          >
+                            <section className="w-full flex flex-col gap-2">
+                              <Avatarinput
+                                name={avatarName}
+                                firstletter={avatarImage}
+                                email={avatarEmail}
+                              />
+                              <span className="w-full h-[2px] rounded-md max-w-[230px] mx-auto bg-primary"></span>
+                              <section className="w-full text-center flex flex-col gap-4 mx-auto mt-9 text-white">
+                                {account.map((item, index) => {
+                                  return (
+                                    <NavLink
+                                      to={`${item.link}`}
+                                      key={index}
+                                      onClick={handleshowingmenu}
+                                      className={({ isActive, isPending }) =>
+                                        isPending
+                                          ? "pending"
+                                          : isActive
+                                          ? "profile_menu_active"
+                                          : "profile_menu_padding"
+                                      }
+                                    >
+                                      {item.name}
+                                    </NavLink>
+                                  );
+                                })}
+                                <span className="absolute top-[75px] left-[40px] text-tertiary">
+                                  Account
+                                </span>
+                              </section>
+                              <span className="w-full h-[2px] rounded-md max-w-[230px] mx-auto bg-primary mt-2"></span>
+                              <section className="w-full text-center flex flex-col gap-4 mx-auto mt-9 text-white">
+                                {support.map((item, index) => {
+                                  return (
+                                    <NavLink
+                                      to={`${item.link}`}
+                                      key={index}
+                                      onClick={handleshowingmenu}
+                                      className={({ isActive, isPending }) =>
+                                        isPending
+                                          ? "pending"
+                                          : isActive
+                                          ? "profile_menu_active"
+                                          : "profile_menu_padding"
+                                      }
+                                    >
+                                      {item.name}
+                                    </NavLink>
+                                  );
+                                })}
+                                <span className="absolute top-[278px] left-[40px] text-tertiary">
+                                  Support
+                                </span>
+                                <button
+                                  onClick={handlelogout}
+                                  className="profile_menu_active"
+                                >
+                                  Sign out
+                                </button>
+                              </section>
+                            </section>
+                          </motion.section>
+                        </section>
+                      </>
+                    )}
+                  </AnimatePresence>
+                </>
+              ) : (
+                <>
+                  {showingMenu && (
+                    <section
+                      onClick={handleshowingmenu}
+                      className="absolute top-0 left-0 w-full h-screen bg-black opacity-30"
+                    ></section>
+                  )}
                   <AnimatePresence>
                     {showingMenu && (
                       <>
@@ -130,7 +221,7 @@ export default function PcNav() {
                           initial={{ x: 300 }}
                           animate={{ x: 0 }}
                           exit={{ x: 300 }}
-                          className="absolute top-[100px] right-[20px] w-full max-w-[250px] h-[430px] flex flex-col rounded-md bg-tertiary "
+                          className="absolute top-[90px] right-[8px] w-full max-w-[250px] h-[230px] flex flex-col rounded-md bg-white ring-1 ring-tertiary shadow-2xl"
                         >
                           <section className="w-full flex flex-col gap-2">
                             <Avatarinput
@@ -138,87 +229,13 @@ export default function PcNav() {
                               firstletter={avatarImage}
                               email={avatarEmail}
                             />
-                            <span className="w-full h-[2px] rounded-md max-w-[230px] mx-auto bg-primary"></span>
-                            <section className="w-full text-center flex flex-col gap-4 mx-auto mt-9 text-white">
-                              {account.map((item, index) => {
-                                return (
-                                  <NavLink
-                                    to={`${item.link}`}
-                                    key={index}
-                                    className={({ isActive, isPending }) =>
-                                      isPending
-                                        ? "pending"
-                                        : isActive
-                                        ? "profile_menu_active"
-                                        : "profile_menu_padding"
-                                    }
-                                  >
-                                    {item.name}
-                                  </NavLink>
-                                );
-                              })}
-                              <span className="absolute top-[95px] left-[40px] text-white">
-                                Account
-                              </span>
-                            </section>
-                            <span className="w-full h-[2px] rounded-md max-w-[230px] mx-auto bg-primary mt-2"></span>
-                            <section className="w-full text-center flex flex-col gap-4 mx-auto mt-9 text-white">
-                              {support.map((item, index) => {
-                                return (
-                                  <NavLink
-                                    to={`${item.link}`}
-                                    key={index}
-                                    className={({ isActive, isPending }) =>
-                                      isPending
-                                        ? "pending"
-                                        : isActive
-                                        ? "profile_menu_active"
-                                        : "profile_menu_padding"
-                                    }
-                                  >
-                                    {item.name}
-                                  </NavLink>
-                                );
-                              })}
-                              <span className="absolute top-[300px] left-[40px] text-white">
-                                Support
-                              </span>
-                              <button
-                                onClick={handlelogout}
-                                className="profile_menu_active"
-                              >
-                                Sign out
-                              </button>
-                            </section>
-                          </section>
-                        </motion.section>
-                      </>
-                    )}
-                  </AnimatePresence>
-                </>
-              ) : (
-                <>
-                  <AnimatePresence>
-                    {showingMenu && (
-                      <>
-                        <motion.section
-                          initial={{ y: -100 }}
-                          animate={{ y: 0 }}
-                          exit={{ y: -325 }}
-                          className="absolute top-[90px] right-[8px] w-full max-w-[250px] h-[230px] flex flex-col rounded-md bg-tertiary "
-                        >
-                          <section className="w-full flex flex-col gap-2">
-                            <Avatarinput
-                              name={avatarName}
-                              firstletter={avatarImage}
-                              email={avatarEmail}
-                            />
-                            <span className="w-full h-[2px] rounded-md max-w-[230px] mx-auto bg-primary"></span>
+                            <span className="w-full h-[2px] rounded-md max-w-[230px] mx-auto bg-tertiary"></span>
                             <section className="w-full text-center flex flex-col gap-4 mx-auto mt-5 text-white">
                               {signinup.map((item, index) => (
                                 <NavLink
                                   to={`${item.link}`}
                                   key={index}
+                                  onClick={handleshowingmenu}
                                   className={({ isActive, isPending }) =>
                                     isPending
                                       ? "pending"
