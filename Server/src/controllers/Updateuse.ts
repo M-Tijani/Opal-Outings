@@ -32,15 +32,21 @@ const Updateuser = async (req: Request, res: Response, next: NextFunction) => {
     res.status(400).send({ message: "Email already exists" });
   }
 };
-const Updatepassowrd = async (req: Request, res: Response) => {
+const Updatepassowrd = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const input_1 = req.body;
   const input_2 = req.body;
   const _id = req.headers.authorization;
   // const _id = req.cookies.Authorization;
 
-  if (input_1 !== input_2) {
+  if (input_1.password !== input_2.conformPassword) {
+    // console.log("Password does not match");
     return res.status(400).send({ message: "Password does not match" });
   } else {
+    // console.log("Password match");
     input_1.password = await bcrypt.hash(input_1.password, saltRounds);
     try {
       const passowrdupdate = await User.findByIdAndUpdate({ _id }, input_1, {

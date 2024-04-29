@@ -10,7 +10,7 @@ export default function Layout() {
         <section className="fixed w-full z-10">
           <Header />
         </section>
-        <div>
+        <div className="w-full pt-[95px]">
           <Outlet />
         </div>
         <Footer />

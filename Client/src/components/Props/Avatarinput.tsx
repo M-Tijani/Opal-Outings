@@ -12,11 +12,11 @@ export default function Avatarinput({
   return (
     <>
       <section className="w-full flex flex-col gap-2">
-        <section className="flex w-full items-center justify-center gap-2">
-          <section className="text-tertiary font-semibold text-2xl bg-primary w-[60px] h-[60px] flex items-center justify-center rounded-full my-2 select-none border-none ring-1 ring-primary">
-            <h1>{firstletter}</h1>
+        <section className="w-fit flex items-center gap-2 justify-start mt-2 ml-[10px]">
+          <section className="bg-tertiary w-[50px] h-[50px] rounded-full flex items-center justify-center">
+            <h1 className="text-white">{firstletter}</h1>
           </section>
-          <section className="text-white text-[12px]">
+          <section className="text-[12px]">
             <h1>{name}</h1>
             <h1>{email}</h1>
           </section>

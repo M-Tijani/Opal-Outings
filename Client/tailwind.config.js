@@ -14,7 +14,7 @@ export default {
         inputcolor: "#EFEFEF",
       },
       backgroundImage: {
-        "hero-pattern": "url('./src/assets/Hero_Background.jpg')",
+        // "hero-pattern": "url('./src/assets/useble_image.jpg')",
       },
       fontFamily: {
         Inter: ["Inter", "sans-serif"],

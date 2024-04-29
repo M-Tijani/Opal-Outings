@@ -16,7 +16,7 @@ export default function Signinput({
   return (
     <>
       <section>
-        <div className="relative w-full max-w-[350px] mt-7">
+        <div className="relative w-full mt-7">
           <input
             className="bg-inputcolor w-full h-[44px] rounded-md outline-none px-5 border-none ring-1 focus:ring-2 ring-tertiary"
             type={type}
