@@ -6,6 +6,7 @@ export default {
       colors: {
         primary: "#DFFBFC",
         secondary: "#EE6B4D",
+        secondaryHover: "#DA4928",
         tertiary: "#293241",
         tertiaryHover: "#344258",
         tertiaryInput: "#414F65",
